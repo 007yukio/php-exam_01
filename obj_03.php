@@ -93,7 +93,7 @@ while(true){
 
     if($input == 0){
         echo "どこへ向かって走りますか？".PHP_EOL;
-        echo "（東京 OR 名古屋）".PHP_EOL;
+        echo "東京 OR 名古屋".PHP_EOL;
 
         $plce = trim(fgets(STDIN));
         echo "行先:".$plce.PHP_EOL;
