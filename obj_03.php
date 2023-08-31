@@ -85,7 +85,6 @@ while(true){
         $nissan->delete_user($passengerNo);
     }
 
-
     echo "どうしますか？（0:走る、1:給油する）";
 
     $input = (int) trim(fgets(STDIN));
