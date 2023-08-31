@@ -1,9 +1,6 @@
 <?php
 
 $nissan = new Car(110,"ノート",5);
-// $nissan->runFor("名古屋");
-// $nissan->refueling();
-// $nissan->runFor("名古屋");
 
 class Car {
     private $energy;
@@ -36,7 +33,7 @@ class Car {
     }
 
     function add_user(string $passenger): void{
-        //5人まで追加できる。追加は一人づつしか追加できない。
+        // 5人まで追加できる。追加は一人づつしか追加できない。
         if($this->menber < 5){
             echo "現在{$this->menber}人乗ってます！！".PHP_EOL;
 
@@ -54,12 +51,24 @@ class Car {
         if($passengerNo > 4){
             echo "4名までしか降ろせません";
         }else{
+            //4人以下1人以上の人数で制御
             if($this->menber > 1){
-                $this->menber = $this->menber - $passengerNo;
-
-                echo "{$passengerNo}人降ろしました。".PHP_EOL;
                 echo "現在{$this->menber}人乗っています".PHP_EOL;
-    
+
+                $this->menber = $this->menber - $passengerNo;
+                //2人しか搭乗していないが最大4人下車できてしまい搭乗者がマイナスになってしまう…
+                //合計時がマイナスになった場合アラート表示し、ドライバーを追加する。
+                if($this->menber <= 0){
+                    echo"ドライバーは下車できません。".PHP_EOL;
+
+                    $this->menber = $this->menber + 1;
+
+                    echo "現在{$this->menber}人乗っています".PHP_EOL;
+                }else{
+                    echo "{$passengerNo}人降ろしました。".PHP_EOL;
+                    echo "現在{$this->menber}人乗っています".PHP_EOL;
+                }
+
             }else{
                 echo "降ろす人がいません".PHP_EOL;
             }
@@ -71,7 +80,7 @@ while(true){
 
     echo "車に乗せますか？（0:乗せる、1:乗せない、2:降ろす、）";
     $userNo = (int)trim(fgets(STDIN));
-    echo $userNo;
+    //echo $userNo;
 
     if($userNo == 0){
         echo "車に乗せる人の名前は？";
