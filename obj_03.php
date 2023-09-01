@@ -7,7 +7,7 @@ class Car {
     private $max_energy;
     private $cost = 50;
     public $name;
-    private $menber = 1;
+    private $member = 1;
     public $passenger;
 
     function __construct(int $max_energy, string $name){
@@ -34,41 +34,38 @@ class Car {
 
     function add_user(string $passenger): void{
         // 5人まで追加できる。追加は一人づつしか追加できない。
-        if($this->menber < 5){
-            echo "現在{$this->menber}人乗ってます！！".PHP_EOL;
+        if($this->member < 5){
+            echo "現在{$this->member}人乗ってます！！".PHP_EOL;
 
-            $this->menber = $this->menber + 1;
+            $this->member = $this->member + 1;
             
             echo "{$passenger}さんを追加しました！！".PHP_EOL;
-            echo "車に{$this->menber}人乗ってます！！".PHP_EOL;
+            echo "車に{$this->member}人乗ってます！！".PHP_EOL;
         }else{
             echo "車に乗れる上限を超えてます。".PHP_EOL;
         }
     }
 
     function delete_user(int $passengerNo): void{
-
+        //入力値が4以上だったアラート表示
         if($passengerNo > 4){
-            echo "4名までしか降ろせません";
+            echo "4名までしか降ろせません".PHP_EOL;
         }else{
             //4人以下1人以上の人数で制御
-            if($this->menber > 1){
-                echo "現在{$this->menber}人乗っています".PHP_EOL;
-
-                $this->menber = $this->menber - $passengerNo;
+            if($this->member > 1){
+                echo "現在{$this->member}人乗っています".PHP_EOL;
+                $this->member = $this->member - $passengerNo;
                 //2人しか搭乗していないが最大4人下車できてしまい搭乗者がマイナスになってしまう…
                 //合計時がマイナスになった場合アラート表示し、ドライバーを追加する。
-                if($this->menber <= 0){
+                if($this->member <= 0){
                     echo"ドライバーは下車できません。".PHP_EOL;
-
-                    $this->menber = $this->menber + 1;
-
-                    echo "現在{$this->menber}人乗っています".PHP_EOL;
+                    //$this->menber = $this->menber + 1;
+                    $this->member = 1;
+                    echo "現在{$this->member}人乗っています1".PHP_EOL;
                 }else{
                     echo "{$passengerNo}人降ろしました。".PHP_EOL;
-                    echo "現在{$this->menber}人乗っています".PHP_EOL;
+                    echo "現在{$this->member}人乗っています2".PHP_EOL;
                 }
-
             }else{
                 echo "降ろす人がいません".PHP_EOL;
             }
